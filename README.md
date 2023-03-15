@@ -1,87 +1,49 @@
-# Project Title 我的餐廳清單
+# 我的餐廳清單
 
 一個餐廳清單專案，提供瀏覽及搜尋餐廳詳細資訊，如：餐廳類別、餐廳地址、餐廳電話等
 
-## Getting Started
+## 功能說明
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+* 依照餐廳名稱搜尋
+* 點選各餐廳卡片，可瀏覽餐廳詳細資料
 
-### Prerequisites
 
-What things you need to install the software and how to install them
+## 安裝
 
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+1. 開啟終端機，進入專案目錄，並從github下載資料
 
 ```
-Give the example
+> git clone https://github.com/erikku54/ac_restaurant-list-handlebars.git
 ```
 
-And repeat
+2. 安裝套件
 
 ```
-until finished
+> cd ac_restaurant-list-handlebars
+> npm install
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+3. 執行程式，啟動監聽
 
 ```
-Give an example
+> npm run start
 ```
 
-### And coding style tests
+4. 啟動程式後，開啟瀏覽器並至http://localhost:3000開始瀏覽
 
-Explain what these tests test and why
+## 畫面截圖
 
-```
-Give an example
-```
+![screenshot-1](./screenshoots/screenshot-1.png)
 
-## Deployment
+![screenshot-2](./screenshoots/screenshot-2.png)
 
-Add additional notes about how to deploy this on a live system
 
-## Built With
+## 使用工具
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* VS Code - 編程環境
+* node.js / express.js - 後端框架
+* express-handlebars - 樣板引擎
 
-## Contributing
+## 作者
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* **Eric Huang** 
