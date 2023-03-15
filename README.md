@@ -43,6 +43,8 @@
 * VS Code - 編程環境
 * node.js / express.js - 後端框架
 * express-handlebars - 樣板引擎
+* bootstrap - 樣式
+* fontawesome - icon
 
 ## 作者
 
