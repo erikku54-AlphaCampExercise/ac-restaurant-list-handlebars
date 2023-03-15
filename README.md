@@ -4,11 +4,12 @@
 
 ## 功能說明
 
-* 依照餐廳名稱搜尋
+* 餐廳資料一覽
+* 可搜尋餐廳名稱
 * 點選各餐廳卡片，可瀏覽餐廳詳細資料
 
 
-## 安裝
+## 安裝與執行
 
 1. 開啟終端機，進入專案目錄，並從github下載資料
 
@@ -38,13 +39,13 @@
 ![screenshot-2](./screenshoots/screenshot-2.png)
 
 
-## 使用工具
+## 開發環境與套件
 
 * VS Code - 編程環境
-* node.js / express.js - 後端框架
-* express-handlebars - 樣板引擎
-* bootstrap - 樣式
-* fontawesome - icon
+* node.js / express.js@4.18.2- 後端框架
+* express-handlebars@7.0.2 - 樣板引擎
+* bootstrap@5.2.3 - 樣式
+* fontawesome@5.8.1 (CDN) - icon
 
 ## 作者
 
