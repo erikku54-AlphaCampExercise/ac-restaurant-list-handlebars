@@ -15,7 +15,7 @@
 2. 開啟終端機，進入專案目錄，並從github下載資料
 
 ```
-> git clone https://github.com/erikku54/ac_restaurant-list-handlebars.git
+> git clone https://github.com/erikku54/ac-restaurant-list-handlebars.git
 ```
 
 3. 安裝套件
