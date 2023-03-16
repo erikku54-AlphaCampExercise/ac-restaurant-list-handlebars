@@ -34,9 +34,18 @@ app.get('/restaurants/:id', (req, res) => {
 app.get('/search', (req, res) => {
 
     //依關鍵字篩選餐廳，若無則顯示無符合資料
+    const keyword = req.query.keyword.trim();
+
+    if (!keyword) {
+        return res.redirect('/');
+    }
+
     const filteredRestaurants = restaurants.results.filter( 
-        (item) => item.name.toLowerCase().includes(req.query.keyword.trim().toLowerCase()));
-    res.render('index', {restaurants: filteredRestaurants, isNoResult: (filteredRestaurants.length===0)});
+        (item) => item.name.toLowerCase().includes(keyword.toLowerCase()));
+    
+    res.render('index', { restaurants: filteredRestaurants,
+                          keyword,
+                          isNoResult: (filteredRestaurants.length===0)});
 })
 
 

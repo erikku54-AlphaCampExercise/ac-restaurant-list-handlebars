@@ -11,26 +11,27 @@
 
 ## 安裝與執行
 
-1. 開啟終端機，進入專案目錄，並從github下載資料
+1. 請先確認安裝有node.js及npm
+2. 開啟終端機，進入專案目錄，並從github下載資料
 
 ```
 > git clone https://github.com/erikku54/ac_restaurant-list-handlebars.git
 ```
 
-2. 安裝套件
+3. 安裝套件
 
 ```
 > cd ac_restaurant-list-handlebars
 > npm install
 ```
 
-3. 執行程式，啟動監聽
+4. 執行程式，啟動監聽
 
 ```
 > npm run start
 ```
 
-4. 啟動程式後，開啟瀏覽器並至http://localhost:3000開始瀏覽
+5. 啟動程式後，開啟瀏覽器並至http://localhost:3000開始瀏覽
 
 ## 畫面截圖
 
