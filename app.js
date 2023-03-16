@@ -35,7 +35,7 @@ app.get('/search', (req, res) => {
 
     //依關鍵字篩選餐廳，若無則顯示無符合資料
     const filteredRestaurants = restaurants.results.filter( 
-        (item) => item.name.toLowerCase().includes(req.query.keyword));
+        (item) => item.name.toLowerCase().includes(req.query.keyword.trim().toLowerCase()));
     res.render('index', {restaurants: filteredRestaurants, isNoResult: (filteredRestaurants.length===0)});
 })
 
