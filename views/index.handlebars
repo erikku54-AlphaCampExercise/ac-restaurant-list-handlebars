@@ -22,6 +22,10 @@
       <div class="row row-cols-sm-3">
 
 
+        {{#if isNoResult}} 
+          <div>目前沒有符合的資料</div>
+        {{/if}}
+
         {{#each restaurants}}
             <a href="/restaurants/{{this.id}}" class="text-secondary">
             <div class="card mb-3">

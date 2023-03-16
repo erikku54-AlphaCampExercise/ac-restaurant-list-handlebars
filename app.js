@@ -25,15 +25,18 @@ app.get('/', (req, res) => {
 
 app.get('/restaurants/:id', (req, res) => {
 
-    res.render('show', {restaurant: restaurants.results.find(
-        (item) => item.id.toString() === req.params.id)});
+    //傳入該id的餐廳資料
+    const restaurant = restaurants.results.find(
+        (item) => item.id.toString() === req.params.id);
+    res.render('show', { restaurant });
 })
 
 app.get('/search', (req, res) => {
 
-    const keyword = req.query.keyword
-    res.render('index', {restaurants: restaurants.results.filter( 
-        (item) => item.name.toLowerCase().includes(keyword))});
+    //依關鍵字篩選餐廳，若無則顯示無符合資料
+    const filteredRestaurants = restaurants.results.filter( 
+        (item) => item.name.toLowerCase().includes(req.query.keyword));
+    res.render('index', {restaurants: filteredRestaurants, isNoResult: (filteredRestaurants.length===0)});
 })
 
 
