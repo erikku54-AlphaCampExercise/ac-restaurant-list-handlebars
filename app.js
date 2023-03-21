@@ -1,4 +1,10 @@
 
+//environment setting 僅在非正式環境時使用dotenv
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config({ path: __dirname + '/.env'})
+}
+
+
 //require express & setup
 const express = require('express');
 const app = express();
@@ -12,21 +18,40 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 //setting static file directory
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 
-const restaurants = require("./restaurant.json");
+//loading data from database
+let restaurants = [];
+
+const mongoose = require('mongoose');
+const restaurantModel = require('./models/restaurantModel');
+
+mongoose.connect(process.env.MONGODB_URI)
+.then( () => {
+    console.log('mongodb connected!');
+    return restaurantModel.find().lean();   //要加lean()否則handlebars讀不到屬性
+
+}).then( items => {
+    //put DB data into restaurants
+    restaurants = items;
+
+}).catch( err => {
+    console.log('mongodb error:', err);
+})
+
+
 
 //setting router
 app.get('/', (req, res) => {
 
-    res.render('index', {restaurants: restaurants.results});
+    res.render('index', { restaurants });
 })
 
 app.get('/restaurants/:id', (req, res) => {
 
     //傳入該id的餐廳資料
-    const restaurant = restaurants.results.find(
+    const restaurant = restaurants.find(
         (item) => item.id.toString() === req.params.id);
     res.render('show', { restaurant });
 })
@@ -40,7 +65,7 @@ app.get('/search', (req, res) => {
         return res.redirect('/');
     }
 
-    const filteredRestaurants = restaurants.results.filter( 
+    const filteredRestaurants = restaurants.filter( 
         (item) => item.name.toLowerCase().includes(keyword.toLowerCase()));
     
     res.render('index', { restaurants: filteredRestaurants,
