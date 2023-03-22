@@ -12,7 +12,10 @@ const restaurantSchema = new Schema({
         require: true,
     },
     "name_en": String,
-    "category": String,
+    "category": {
+        type: String,
+        require: true,
+    },
     "image": String,
     "location": String,
     "phone": String,
@@ -21,5 +24,5 @@ const restaurantSchema = new Schema({
     "description": String    
 })
 
-//編譯成一Model物件後輸出
+//編譯成Model物件後輸出
 module.exports = mongoose.model('Restaurant', restaurantSchema);
