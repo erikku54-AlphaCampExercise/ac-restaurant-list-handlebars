@@ -61,6 +61,8 @@
         {{/each}}
 
 
+        {{#if restaurants}}
+
           <div class="mb-5 pb-4">
 
             <a href="/restaurants/new" class="text-secondary" style="text-decoration:none;">
@@ -74,6 +76,8 @@
 
           </div>
 
+        {{/if}}
+
       </div>
     </div>
   </div>
@@ -83,21 +87,23 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 
-  //取得url query中status的值，再決定要呼叫哪個alert
+  // 取得url query，再決定是否須要呼叫alert
   const url = window.location.href;
-  const status = url.split('?')[1].split('=')[1]
-  
-  if ( status === '1' ){
-    showEditSuccess();
-
-  } else if (status === '2'){
-    showDeleteSuccess();
-    
+  let key, value;
+  if (url.indexOf('?') !== -1) {
+    key = url.split('?')[1].split('=')[0];
+    value = url.split('?')[1].split('=')[1];
   }
 
+  if ( key === 'status' && value === '1' ){
+    showEditSuccess();
 
+  } else if ( key === 'status' && value === '2' ){
+    showDeleteSuccess();
 
+  }
 
+  // 修改成功視窗
   function showEditSuccess() {
     Swal.fire({
       icon: 'success',
@@ -105,6 +111,7 @@
     })
   }
 
+  // 刪除成功視窗
   function showDeleteSuccess() {
     Swal.fire({
       icon: 'success',
@@ -112,7 +119,7 @@
     })
   }
 
-  //跳出警告視窗
+  // 刪除確認視窗
   function showDeleteConfirm(id) {
     console.log(id);
 
