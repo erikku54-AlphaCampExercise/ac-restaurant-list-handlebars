@@ -52,7 +52,7 @@ mongoose.connect(process.env.MONGODB_URI)
 
 
 
-//********** routing **********/
+//************ routing ************/
 
 //setting router
 //（頁面）首頁
@@ -99,7 +99,7 @@ app.post('/restaurants/new', (req, res) => {
     let newId;
 
     //取號：取得目前的最大id, 再加1可以得到新的id
-    restaurantModel.findOne().sort({id: -1}).limit(1)
+    restaurantModel.findOne().sort({id: -1})
     .then( restaurant => {
 
         newId = Math.floor(restaurant.id+1);
