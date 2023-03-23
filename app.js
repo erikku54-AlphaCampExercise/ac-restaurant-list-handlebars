@@ -110,7 +110,7 @@ app.post('/restaurants/new', (req, res) => {
         //建立新物件：表單傳過來的值再加上id
         return restaurantModel.create({...req.body, id: newId})
 
-    }).then( () => res.redirect('/') )      //創建成功後重新導向
+    }).then( () => res.redirect('/?status=1') )      //創建成功後重新導向，並附狀態碼
     .catch( err => console.log(err));
 
 
@@ -148,7 +148,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 
         return restaurant.save();
 
-    }).then( () => res.redirect('/?status=1') )   //創建成功後重新導向，並附狀態碼
+    }).then( () => res.redirect('/?status=2') )   //創建成功後重新導向，並附狀態碼
     .catch( err => console.log(err));
 
     //console.log('req.body', req.body)
@@ -161,7 +161,7 @@ app.get('/restaurants/:id/delete', (req, res) => {
     const _id = req.params.id;
 
     restaurantModel.deleteOne({_id})
-    .then( () => res.redirect('/?status=2'))    //創建成功後重新導向，並附狀態碼
+    .then( () => res.redirect('/?status=3'))    //創建成功後重新導向，並附狀態碼
     .catch( err => console.log(err));
 
 })

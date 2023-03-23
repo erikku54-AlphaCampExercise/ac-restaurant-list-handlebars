@@ -95,12 +95,26 @@
     value = url.split('?')[1].split('=')[1];
   }
 
-  if ( key === 'status' && value === '1' ){
-    showEditSuccess();
+  if (key === 'status') {
+    switch (value) {
+      case '1':
+        showCreateSuccess();
+        break;
+      case '2':
+        showEditSuccess();
+        break;     
+      case '3':
+        showDeleteSuccess();
+        break;
+    }
+  }
 
-  } else if ( key === 'status' && value === '2' ){
-    showDeleteSuccess();
-
+  // 新增成功視窗
+  function showCreateSuccess() {
+    Swal.fire({
+      icon: 'success',
+      title: '資料成功新增',
+    })
   }
 
   // 修改成功視窗
