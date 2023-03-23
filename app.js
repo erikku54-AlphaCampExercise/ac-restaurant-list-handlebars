@@ -119,7 +119,7 @@ app.post('/restaurants/new', (req, res) => {
 })
 
 // (頁面) 修改餐廳
-app.get('/restaurants/edit/:id', (req, res) => {
+app.get('/restaurants/:id/edit', (req, res) => {
 
     // 傳入該id的餐廳資料
     const restaurant = restaurants.find( 
@@ -129,7 +129,7 @@ app.get('/restaurants/edit/:id', (req, res) => {
 })
 
 // (功能) 修改餐廳
-app.post('/restaurants/edit/:id', (req, res) => {
+app.post('/restaurants/:id/edit', (req, res) => {
 
     const _id = req.params.id;
     
@@ -148,10 +148,21 @@ app.post('/restaurants/edit/:id', (req, res) => {
 
         return restaurant.save();
 
-    }).then( () => res.redirect('/') )      //創建成功後重新導向
+    }).then( () => res.redirect('/?status=1') )   //創建成功後重新導向，並附狀態碼
     .catch( err => console.log(err));
 
     //console.log('req.body', req.body)
+
+})
+
+// （功能）刪除餐廳
+app.get('/restaurants/:id/delete', (req, res) => {
+
+    const _id = req.params.id;
+
+    restaurantModel.deleteOne({_id})
+    .then( () => res.redirect('/?status=2'))    //創建成功後重新導向，並附狀態碼
+    .catch( err => console.log(err));
 
 })
 
