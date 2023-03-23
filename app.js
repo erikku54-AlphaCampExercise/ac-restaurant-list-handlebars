@@ -60,10 +60,11 @@ app.get('/', (req, res) => {
 
     //重讀，以免資料有更新
     restaurantModel.find().lean()
-    .then( items => restaurants = items)
-    .catch( err => console.log(err));
+    .then( items => {
+        restaurants = items
+        res.render('index', { restaurants });
+    }).catch( err => console.log(err));
 
-    res.render('index', { restaurants });
 })
 
 //（功能）搜尋
@@ -85,14 +86,14 @@ app.get('/search', (req, res) => {
 })
 
 
-//（頁面）新增
+//（頁面）新增餐廳
 app.get('/restaurants/new', (req, res) => {
 
     res.render('new');
 })
 
 
-//（功能）新增
+//（功能）新增餐廳
 app.post('/restaurants/new', (req, res) => {
 
     let newId;
@@ -117,6 +118,7 @@ app.post('/restaurants/new', (req, res) => {
 
 })
 
+// (頁面) 修改餐廳
 app.get('/restaurants/edit/:id', (req, res) => {
 
     // 傳入該id的餐廳資料
@@ -125,6 +127,34 @@ app.get('/restaurants/edit/:id', (req, res) => {
 
     res.render('edit', { restaurant });
 })
+
+// (功能) 修改餐廳
+app.post('/restaurants/edit/:id', (req, res) => {
+
+    const _id = req.params.id;
+    
+    restaurantModel.findById(_id)
+    .then ( restaurant => {
+
+        restaurant.name = req.body.name;
+        restaurant.name_en = req.body.name_en;
+        restaurant.category = req.body.category;
+        restaurant.image = req.body.image;
+        restaurant.location = req.body.location;
+        restaurant.phone = req.body.phone;
+        restaurant.google_map = req.body.google_map;
+        restaurant.rating = req.body.rating;
+        restaurant.description = req.body.description;
+
+        return restaurant.save();
+
+    }).then( () => res.redirect('/') )      //創建成功後重新導向
+    .catch( err => console.log(err));
+
+    //console.log('req.body', req.body)
+
+})
+
 
 //（頁面）詳細資料
 app.get('/restaurants/:id', (req, res) => {
