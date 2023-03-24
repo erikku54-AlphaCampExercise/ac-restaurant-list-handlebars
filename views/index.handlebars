@@ -147,7 +147,16 @@
       confirmButtonText: 'Delete'
     }).then((result) => {
       if (result.isConfirmed) {
-        location.href=`/restaurants/${id}/delete`;
+
+        // location.href=`/restaurants/${id}?_method=delete`;   // get方法method-override不會作用
+
+        // js無法直接發送post request,產生一個form來發送
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = `/restaurants/${id}?_method=delete`;
+        document.body.appendChild(form);
+
+        form.submit();
       }
     })
   }

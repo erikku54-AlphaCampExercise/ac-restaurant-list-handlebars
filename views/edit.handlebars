@@ -7,7 +7,7 @@
     
     <p class="mb-4">(*為必填欄位)</p>
 
-    <form action="/restaurants/{{restaurant._id}}/edit" method="post" novalidate>
+    <form action="/restaurants/{{restaurant._id}}?_method=put" method="post" novalidate>
 
         <div class="mb-3">
             <label for="name" class="form-label">餐廳名稱*</label>

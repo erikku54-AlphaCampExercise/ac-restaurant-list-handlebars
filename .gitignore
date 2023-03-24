@@ -3,5 +3,5 @@
 *.log
 *.gz
 
-#dotenv
+# dotenv
 .env

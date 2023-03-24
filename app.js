@@ -22,7 +22,12 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
 // setting body-parser
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
+
+// setting method-override
+const methodOveride = require('method-override');
+app.use(methodOveride('_method'));
+
 
 /** ********* preload from DB **********/
 
@@ -90,7 +95,7 @@ app.get('/restaurants/new', (req, res) => {
 
 
 // （功能）新增餐廳
-app.post('/restaurants/new', (req, res) => {
+app.post('/restaurants/', (req, res) => {
 
   let newId;
 
@@ -123,7 +128,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 // (功能) 修改餐廳
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
 
   const _id = req.params.id;
   restaurantModel.findById(_id)
@@ -148,7 +153,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 // （功能）刪除餐廳
-app.get('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
 
   const _id = req.params.id;
 
