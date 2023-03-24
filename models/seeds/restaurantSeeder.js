@@ -1,9 +1,9 @@
 
-//開發期使用dotenv
+// 開發期使用dotenv
 if (process.env.NODE_ENV !== 'production') {
-    // console.log(require('dotenv').config());
+  // console.log(require('dotenv').config());
 
-    require('dotenv').config({ path: __dirname + '/../../.env'});
+  require('dotenv').config({ path: __dirname + '/../../.env'});
 }
 
 
@@ -13,13 +13,12 @@ const restaurants = require('../../restaurant.json').results;
 
 
 mongoose.connect(process.env.MONGODB_URI)
-.then( () => {
+  .then(() => {
     console.log('mongodb connected!');
 
     return restaurantModel.create(restaurants)
-        
-}).then( () => {
+  }).then(() => {
 
-    console.log("Database Seed data was created successfully.")
+    console.log('Database Seed data was created successfully.')
 
-}).catch( (err) => console.log('mongodb error:',err))
+  }).catch((err) => console.log('mongodb error:', err));
