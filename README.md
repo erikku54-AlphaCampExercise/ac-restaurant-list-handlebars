@@ -63,8 +63,11 @@ MONGODB_URI = "<你的連線字串>"
 * bootstrap@5.2.3 - 樣式
 * fontawesome@5.8.1 (CDN) - icon
 * mongoose@7.0.2 - 連結MongoDB資料庫
-* dotenv@16.0.3 - 管理環境變數
 * sweetalert2@11 (CDN) - 彈出視窗
+
+底下為開發中使用
+* dotenv@16.0.3 - 管理環境變數
+* eslint@8.36.0 - 代碼風格
 
 ## 作者
 

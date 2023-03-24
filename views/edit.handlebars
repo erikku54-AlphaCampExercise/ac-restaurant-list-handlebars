@@ -104,7 +104,7 @@
 
     // select-option元件的預設值必須用js來設定
 
-    // 取得nodelist後，用展開運算符轉成陣列
+    //取得nodelist後，用展開運算符轉成陣列
     const options = [...document.querySelectorAll('option')];
     options.find( option => option.value === '{{restaurant.category}}' ).selected="true";
 

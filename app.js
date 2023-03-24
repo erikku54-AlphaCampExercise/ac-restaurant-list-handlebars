@@ -1,7 +1,7 @@
 
 // environment setting 僅在非正式環境時使用dotenv
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config({ path: __dirname + '/.env'})
+  require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 }
 
 /** ******** environment setting **********/
@@ -15,7 +15,7 @@ const port = 3000;
 const exphbs = require('express-handlebars').engine;
 
 // setting template engine
-app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 // setting static file directory
@@ -95,7 +95,7 @@ app.post('/restaurants/new', (req, res) => {
   let newId;
 
   // 取號：取得目前的最大id, 再加1可以得到新的id
-  restaurantModel.findOne().sort({id: -1 })
+  restaurantModel.findOne().sort({ id: -1 })
     .then(restaurant => {
 
       newId = Math.floor(restaurant.id + 1);
@@ -152,7 +152,7 @@ app.get('/restaurants/:id/delete', (req, res) => {
 
   const _id = req.params.id;
 
-  restaurantModel.deleteOne({_id})
+  restaurantModel.deleteOne({ _id })
     .then(() => res.redirect('/?status=3')) // 創建成功後重新導向，並附狀態碼
     .catch(err => console.log(err));
 

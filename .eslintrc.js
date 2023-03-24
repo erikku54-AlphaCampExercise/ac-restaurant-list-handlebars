@@ -6,8 +6,6 @@ module.exports = {
     node: true
   },
   extends: 'standard',
-  overrides: [
-  ],
   parserOptions: {
     ecmaVersion: 'latest'
   },
