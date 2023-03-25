@@ -114,7 +114,11 @@
     Swal.fire({
       icon: 'success',
       title: '資料成功新增',
-    })
+    }).then((result) => {
+        if (result.isConfirmed) {
+          location.replace('/');
+        }
+      })
   }
 
   // 修改成功視窗
@@ -122,7 +126,11 @@
     Swal.fire({
       icon: 'success',
       title: '資料成功修改',
-    })
+    }).then((result) => {
+        if (result.isConfirmed) {
+          location.replace('/');
+        }
+      })
   }
 
   // 刪除成功視窗
@@ -130,7 +138,11 @@
     Swal.fire({
       icon: 'success',
       title: '資料成功刪除',
-    })
+    }).then((result) => {
+        if (result.isConfirmed) {
+          location.replace('/');
+        }
+      })
   }
 
   // 刪除確認視窗

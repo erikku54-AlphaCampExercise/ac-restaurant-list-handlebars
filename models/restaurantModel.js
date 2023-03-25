@@ -3,10 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const restaurantSchema = new Schema({
-  id: {
-    type: Number,
-    require: true
-  },
+  id: Number,
   name: {
     type: String,
     require: true
