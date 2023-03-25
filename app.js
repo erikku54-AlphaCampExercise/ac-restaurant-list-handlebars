@@ -1,10 +1,6 @@
 
-// environment setting 僅在非正式環境時使用dotenv
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config({ path: require('path').join(__dirname, '.env') });
-}
 
-/** ******** environment setting **********/
+/** ******** module setting **********/
 
 // require express & setup
 const express = require('express');
@@ -29,26 +25,27 @@ const methodOveride = require('method-override');
 app.use(methodOveride('_method'));
 
 
+
 /** ********* preload from DB **********/
+
+const db = require('./config/mongoose');
 
 // loading data from database
 let restaurants = [];
 
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const restaurantModel = require('./models/restaurantModel');
 
+db.once('open', () => {
 
-// 後端連線後先預載restaurants資料，以免使用者沒有進首頁
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log('mongodb connected!');
-    return restaurantModel.find().lean(); // 要加lean()否則handlebars讀不到屬性
-  }).then(items => {
+  restaurantModel.find()
+    .lean() // 要加lean()否則handlebars讀不到屬性
+    .then(items => {
     // put DB data into restaurants
-    restaurants = items;
-  }).catch(err => {
-    console.log('mongodb error:', err);
-  })
+      restaurants = items;
+    })
+})
+
 
 
 
