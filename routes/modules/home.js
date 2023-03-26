@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
   // 讀取資料庫
   restaurantModel.find().sort({ name: 1 }).lean()
     .then(restaurants => {
-      res.render('index', { restaurants });
+      res.render('index', { restaurants, status: req.query.status }); // 傳入status作為alert判斷依據
     }).catch(err => console.log(err));
 })
 

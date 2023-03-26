@@ -24,6 +24,11 @@ router.post('/', (req, res) => {
 
     }).then(() => res.redirect('/?status=1')) // 創建成功後重新導向，並附狀態碼
     .catch(err => console.log(err));
+
+  // restaurantModel.create(req.body)
+  //   .then(() => res.redirect('/?status=1')) // 創建成功後重新導向，並附狀態碼
+  //   .catch(err => console.log(err));
+
 })
 
 // (頁面) 修改餐廳

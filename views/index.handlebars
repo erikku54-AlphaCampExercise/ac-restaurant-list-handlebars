@@ -18,7 +18,7 @@
             <div class="col-4">
               <div class="input-group">
                 <span class="input-group-text" style="background-color: #9b4b4b; color: white;">排序</span>
-                <select class="form-select" name="sort" aria-label="Default select example">
+                <select class="form-select" onchange="this.form.submit()" name="sort" aria-label="Default select example">
                   <option selected value="1">A to Z</option>
                   <option value="2">Z to A</option>
                   <option value="3">類別</option>
@@ -105,30 +105,19 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 
-  // 找到負責search的表單元件，設定select-oprion切換就submit
-  const form = document.querySelector('form');
-  const select = form.querySelector('select');
-
-  select.addEventListener('change', () => {
-    form.submit();
-  })
 
   // select-option元件的預設值必須用js來設定
-  //取得nodelist後，用展開運算符轉成陣列
-  const options = [...select.querySelectorAll('option')];
-  options.find( option => option.value === '{{sort}}' ).selected="true";
+  // 要加if判斷，否則若沒有傳進sort會跳錯
+  {{#if sort}}
+    const options = [...document.querySelectorAll('option')]; // 取得nodelist，轉成陣列
+    options.find( option => option.value === '{{sort}}' ).selected="true";
+  {{/if}}
 
 
-  // 取得url query，再決定是否須要呼叫alert
-  const url = window.location.href;
-  let key, value;
-  if (url.indexOf('?') !== -1) {
-    key = url.split('?')[1].split('=')[0];
-    value = url.split('?')[1].split('=')[1];
-  }
-
-  if (key === 'status') {
-    switch (value) {
+  // 根據status決定要跳哪個alert
+  // 要加if判斷，否則若沒有傳進status會跳錯
+  {{#if status}}
+    switch ('{{status}}') {
       case '1':
         showCreateSuccess();
         break;
@@ -139,7 +128,7 @@
         showDeleteSuccess();
         break;
     }
-  }
+  {{/if}}
 
   // 新增成功視窗
   function showCreateSuccess() {
