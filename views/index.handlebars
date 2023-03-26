@@ -4,12 +4,30 @@
     <div class="search-bar-inner">
       <form action="/search">
         <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
-          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..." value="{{keyword}}" aria-describedby="search-button">
-          <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+          <div class="row">
+
+            <div class="col-7 me-auto">
+              <div class="input-group">
+                <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..." value="{{keyword}}" aria-describedby="search-button">
+                <div class="input-group-append">
+                  <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-4">
+              <div class="input-group">
+                <span class="input-group-text" style="background-color: #9b4b4b; color: white;">排序</span>
+                <select class="form-select" name="sort" aria-label="Default select example">
+                  <option selected value="1">A to Z</option>
+                  <option value="2">Z to A</option>
+                  <option value="3">類別</option>
+                  <option value="4">地區</option>
+              </div>
+              </select>
+            </div>
           </div>
-        </div>
+
       </form>
     </div>
   </div>
@@ -70,7 +88,7 @@
                  class="d-flex flex-column align-items-center border border-3 rounded-3">
 
                  <div class="pt-5" style="font-size: 5em;">+</div>
-                 <div style="font-size: 1.5em;">新增餐廳</div>
+                 <div style="padding-bottom: 3em; font-size: 1.5em;">新增餐廳</div>
             </div>
             </a>
 
@@ -86,6 +104,20 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+
+  // 找到負責search的表單元件，設定select-oprion切換就submit
+  const form = document.querySelector('form');
+  const select = form.querySelector('select');
+
+  select.addEventListener('change', () => {
+    form.submit();
+  })
+
+  // select-option元件的預設值必須用js來設定
+  //取得nodelist後，用展開運算符轉成陣列
+  const options = [...select.querySelectorAll('option')];
+  options.find( option => option.value === '{{sort}}' ).selected="true";
+
 
   // 取得url query，再決定是否須要呼叫alert
   const url = window.location.href;
