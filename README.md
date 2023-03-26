@@ -4,7 +4,7 @@
 
 ## 功能說明
 
-* 可以瀏覽全部所有餐廳
+* 可以瀏覽全部所有餐廳, 並有排序功能
 * 可搜尋餐廳名稱
 * 點選各餐廳卡片，可瀏覽餐廳詳細資料
 * 可以新增餐廳
@@ -64,6 +64,7 @@ MONGODB_URI = "<你的連線字串>"
 * fontawesome@5.8.1 (CDN) - icon
 * mongoose@7.0.2 - 連結MongoDB資料庫
 * sweetalert2@11 (CDN) - 彈出視窗
+* method-override@3.0.0 - 覆寫http方法
 
 底下為開發中使用
 * dotenv@16.0.3 - 管理環境變數
