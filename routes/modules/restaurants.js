@@ -12,22 +12,22 @@ router.get('/new', (req, res) => {
 // （功能）新增餐廳
 router.post('/', (req, res) => {
 
-  let newId;
+  // let newId;
 
-  // 取號：取得目前的最大id, 再加1可以得到新的id
-  restaurantModel.findOne().sort({ id: -1 })
-    .then(restaurant => {
-      newId = Math.floor(restaurant.id + 1);
+  // // 取號：取得目前的最大id, 再加1可以得到新的id
+  // restaurantModel.findOne().sort({ id: -1 })
+  //   .then(restaurant => {
+  //     newId = Math.floor(restaurant.id + 1);
 
-      // 建立新物件：表單傳過來的值再加上id
-      return restaurantModel.create({ ...req.body, id: newId })
+  //     // 建立新物件：表單傳過來的值再加上id
+  //     return restaurantModel.create({ ...req.body, id: newId })
 
-    }).then(() => res.redirect('/?status=1')) // 創建成功後重新導向，並附狀態碼
-    .catch(err => console.log(err));
-
-  // restaurantModel.create(req.body)
-  //   .then(() => res.redirect('/?status=1')) // 創建成功後重新導向，並附狀態碼
+  //   }).then(() => res.redirect('/?status=1')) // 創建成功後重新導向，並附狀態碼
   //   .catch(err => console.log(err));
+
+  restaurantModel.create(req.body)
+    .then(() => res.redirect('/?status=1')) // 創建成功後重新導向，並附狀態碼
+    .catch(err => console.log(err));
 
 })
 
