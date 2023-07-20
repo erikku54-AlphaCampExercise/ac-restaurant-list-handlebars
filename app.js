@@ -20,6 +20,14 @@ app.use(express.static('public'));
 // setting body-parser
 app.use(express.urlencoded({ extended: true }));
 
+// setting session
+const session = require('express-session');
+app.use(session({
+  secret: 'KaohsiungEye',
+  resave: false,
+  saveUninitialized: true
+}))
+
 // setting method-override
 const methodOveride = require('method-override');
 app.use(methodOveride('_method'));
