@@ -4,7 +4,7 @@ const router = express.Router();
 
 const User = require('../../models/userModel');
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // (頁面)註冊表單
 router.get('/register', (req, res) => {
@@ -42,7 +42,7 @@ router.post('/register', (req, res) => {
         .then(hash => User.create({ name, email, password: hash }))
         .then(() => {
           console.log('註冊成功，請登入');
-          return res.render('/users/login');
+          return res.render('login');
         })
     }).catch(err => console.log(err));
 
@@ -50,7 +50,7 @@ router.post('/register', (req, res) => {
 
 // (頁面)登入表單頁
 router.get('/login', (req, res) => {
-
+  res.render('login');
 })
 
 // (功能)登入

@@ -1,0 +1,60 @@
+<h1 class="mb-1 restaurant-show-title">登入</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-10 mx-auto">
+
+        {{!-- <p class="mb-4">(*為必填欄位)</p> --}}
+
+        <form action="/users/login" method="POST" novalidate>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">電子信箱</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="請輸入電子信箱..." required>
+
+                <div class="invalid-feedback">
+                    錯誤的Email格式
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">密碼</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="請輸入密碼..." required>
+            
+                <div class="invalid-feedback">
+                    錯誤的密碼格式
+                </div>
+            </div>
+      
+
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit" >登入</button>
+                {{!-- <a class="btn btn-secondary" href="/">返回</a> --}}
+            </div>
+            
+        </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    // disabling form submissions if there are invalid fields
+    (function () {
+        'use strict'
+
+        // Fetch the form we want to apply custom Bootstrap validation styles to
+        let form = document.querySelector('form');
+
+        // prevent it from submission
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+        }, false)
+    })()
+
+</script>
