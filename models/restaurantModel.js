@@ -6,19 +6,25 @@ const restaurantSchema = new Schema({
   id: Number,
   name: {
     type: String,
-    require: true
+    required: true
   },
   name_en: String,
   category: {
     type: String,
-    require: true
+    required: true
   },
   image: String,
   location: String,
   phone: String,
   google_map: String,
   rating: Number,
-  description: String
+  description: String,
+  userId: {
+    type: Schema.Type.ObjectId,
+    ref: 'User',
+    index: true,
+    // required: true
+  }
 })
 
 // 編譯成Model物件後輸出
