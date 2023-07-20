@@ -5,7 +5,7 @@
 // require express & setup
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // require handlebars (注意v7使用方式有別)
 const exphbs = require('express-handlebars').engine;
