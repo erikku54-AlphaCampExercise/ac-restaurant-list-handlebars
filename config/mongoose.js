@@ -1,9 +1,4 @@
 
-// environment setting 僅在非正式環境時使用dotenv
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config({ path: require('path').join(__dirname, '/../.env') });
-}
-
 
 const mongoose = require('mongoose');
 

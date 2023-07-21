@@ -2,6 +2,11 @@
 
 /** ******** module setting **********/
 
+// environment setting 僅在非正式環境時使用dotenv
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config({ path: './.env' });
+}
+
 // require express & setup
 const express = require('express');
 const app = express();
@@ -23,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 // setting session
 const session = require('express-session');
 app.use(session({
-  secret: 'KaohsiungEye',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }));

@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 
 module.exports = app => {
 
@@ -36,6 +37,27 @@ module.exports = app => {
             })
         }).catch(err => done(err, false));
     }))
+
+  passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_ID,
+    clientSecret: process.env.FACEBOOK_SECRET,
+    callbackURL: process.env.FACEBOOK_CALLBACK,
+    profileFields: ['email', 'displayName']
+  }, (accessToken, refreshToken, profile, done) => {
+    const { name, email } = profile._json
+    User.findOne({ email })
+      .then(user => {
+        if (user) return done(null, user)
+        // password欄位為必填，因此隨機產生8碼亂數填寫
+        const randomPassword = Math.random().toString(36).slice(-8);
+
+        bcrypt.genSalt(10)
+          .then(salt => bcrypt.hash(randomPassword, salt))
+          .then(hash => User.create({ name, email, password: hash }))
+          .then(user => done(null, user))
+          .catch(err => done(err, false))
+      })
+  }))
 
   // -----設定序列化及反序列化
   // 在session中同時儲存id, username
