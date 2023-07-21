@@ -5,6 +5,6 @@ module.exports = (req, res, next) => {
     return next();
   }
 
-  console.log('warning_msg', '請先登入才能使用！');
+  req.flash('warning_msg', '請先登入才能使用！');
   res.redirect('/users/login');
 }

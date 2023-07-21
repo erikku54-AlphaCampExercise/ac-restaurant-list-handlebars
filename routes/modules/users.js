@@ -42,8 +42,8 @@ router.post('/register', (req, res) => {
         .then(salt => bcrypt.hash(password, salt))
         .then(hash => User.create({ name, email, password: hash }))
         .then(() => {
-          console.log('註冊成功，請登入');
-          return res.render('login');
+          req.flash('success_msg', '註冊成功，請重新登入。');
+          res.redirect('/users/login');
         })
     }).catch(err => console.log(err));
 
@@ -64,6 +64,7 @@ router.post('/login', passport.authenticate('local', {
 router.get('/logout', (req, res) => {
   req.logout(err => {
     if (err) return console.log(err);
+    req.flash('success_msg', '登出成功! 請重新登入。');
     res.redirect('/users/login');
   })
 })
