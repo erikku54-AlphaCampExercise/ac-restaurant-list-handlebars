@@ -4,6 +4,7 @@ const router = express.Router();
 
 const User = require('../../models/userModel');
 
+const passport = require('passport');
 const bcrypt = require('bcryptjs');
 
 // (頁面)註冊表單
@@ -54,13 +55,17 @@ router.get('/login', (req, res) => {
 })
 
 // (功能)登入
-router.post('/login', (req, res) => {
-
-})
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/login'
+}))
 
 // (功能)登出
 router.get('/logout', (req, res) => {
-
+  req.logout(err => {
+    if (err) return console.log(err);
+    res.redirect('/users/login');
+  })
 })
 
 module.exports = router;

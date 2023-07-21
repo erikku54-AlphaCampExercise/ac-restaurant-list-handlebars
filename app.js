@@ -32,6 +32,10 @@ app.use(session({
 const methodOveride = require('method-override');
 app.use(methodOveride('_method'));
 
+// setting passport
+const userPassport = require('./config/passport');
+userPassport(app);
+
 // setting router
 const routes = require('./routes');
 app.use(routes);
