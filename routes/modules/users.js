@@ -33,7 +33,7 @@ router.post('/register', (req, res) => {
   User.findOne({ email })
     .then(user => {
       if (user) {
-        console.log(user);
+        // console.log(user);
         errors.push({ message: '這個email已註冊過！' });
         return res.render('register', { errors, ...req.body });
       }
@@ -57,7 +57,8 @@ router.get('/login', (req, res) => {
 // (功能)登入
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
-  failureRedirect: '/users/login'
+  failureRedirect: '/users/login',
+  failureFlash: true
 }))
 
 // (功能)登出
