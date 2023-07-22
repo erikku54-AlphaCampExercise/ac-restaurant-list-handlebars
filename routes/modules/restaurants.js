@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
   //   }).then(() => res.redirect('/?status=1')) // 創建成功後重新導向，並附狀態碼
   //   .catch(err => console.log(err));
 
-  restaurantModel.create(req.body)
+  restaurantModel.create({ ...req.body, userId: req.user._id })
     .then(() => res.redirect('/?status=1')) // 創建成功後重新導向，並附狀態碼
     .catch(err => console.log(err));
 
@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
 router.get('/:id/edit', (req, res) => {
 
   // 傳入該id的餐廳資料
-  restaurantModel.findOne({ _id: req.params.id })
+  restaurantModel.findOne({ _id: req.params.id, userId: req.user._id })
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
     .catch(err => console.log(err));
@@ -45,7 +45,9 @@ router.get('/:id/edit', (req, res) => {
 // (功能) 修改餐廳
 router.put('/:id', (req, res) => {
   const _id = req.params.id;
-  restaurantModel.findById(_id)
+
+  // restaurantModel.findById(_id)
+  restaurantModel.findOne({ _id, userId: req.user._id })
     .then(restaurant => {
 
       restaurant.name = req.body.name;
@@ -69,7 +71,7 @@ router.delete('/:id', (req, res) => {
 
   const _id = req.params.id;
 
-  restaurantModel.deleteOne({ _id })
+  restaurantModel.deleteOne({ _id, userId: req.user._id })
     .then(() => res.redirect('/?status=3')) // 創建成功後重新導向，並附狀態碼
     .catch(err => console.log(err));
 })
@@ -79,7 +81,7 @@ router.delete('/:id', (req, res) => {
 router.get('/:id', (req, res) => {
 
   // 傳入該id的餐廳資料
-  restaurantModel.findOne({ _id: req.params.id })
+  restaurantModel.findOne({ _id: req.params.id, userId: req.user._id })
     .lean()
     .then(restaurant => res.render('show', { restaurant }))
     .catch(err => console.log(err));

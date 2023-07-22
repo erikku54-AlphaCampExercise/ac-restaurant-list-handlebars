@@ -62,7 +62,7 @@ module.exports = app => {
   // -----設定序列化及反序列化
   // 在session中同時儲存id, username
   passport.serializeUser((user, done) => {
-    done(null, { id: user.id, name: user.name });
+    done(null, { _id: user._id, name: user.name });
   });
 
   // user(從session取出的資料)已經包含了所需要的資訊，不必再進資料庫
