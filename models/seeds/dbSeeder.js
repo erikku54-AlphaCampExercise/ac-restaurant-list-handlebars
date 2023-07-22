@@ -11,8 +11,18 @@ const restaurantModel = require('../restaurantModel');
 const users = require('./seeds.json').users;
 const restaurants = require('./seeds.json').restaurants;
 
+const bcrypt = require('bcryptjs');
+
 
 db.once('open', () => {
+
+  // 先將密碼加密處理
+  users.forEach(user => {
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(user.password, salt);
+
+    user.password = hash;
+  })
 
   Promise.all([userModel.create(users), restaurantModel.create(restaurants)])
     .then(() => {
