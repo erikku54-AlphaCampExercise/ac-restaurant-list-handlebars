@@ -49,7 +49,7 @@ FACEBOOK_SECRET = "<Facebook應用程式密鑰>"
 > npm run start
 ```
 
-7. 啟動程式後，開啟瀏覽器並至http://localhost:3000開始瀏覽
+7. 啟動程式後，開啟瀏覽器並至http://localhost:3000/users/login 開始瀏覽
 
 ## 畫面截圖
 

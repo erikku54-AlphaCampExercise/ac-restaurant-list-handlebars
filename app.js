@@ -49,7 +49,7 @@ app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.user = req.user;
   res.locals.success_msg = req.flash('success_msg');
-  res.locals.warning_msg = req.flash('error') || req.flash('warning_msg');
+  res.locals.warning_msg = req.flash('error'); // passport內建訊息系統的key是error，非warning_msg
 
   return next();
 })
